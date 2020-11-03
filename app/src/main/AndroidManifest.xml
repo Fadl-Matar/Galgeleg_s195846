@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Vundet"></activity>
-        <activity android:name=".Tabt" />
+        <activity android:name=".LostPage"></activity>
+        <activity android:name=".WinPage" />
         <activity android:name=".Help" />
         <activity android:name=".GameStart" />
         <activity android:name=".MainActivity">

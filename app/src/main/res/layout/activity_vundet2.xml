@@ -4,26 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Tabt">
+    tools:context=".WinPage">
 
     <TextView
-        android:id="@+id/tabtBesked"
+        android:id="@+id/txtVundet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        android:text="Desværre, du har tabt!!"
-        android:textSize="25sp"
+        android:layout_marginTop="176dp"
+        android:text="Tillykke, du har vundet"
+        android:fontFamily="cursive"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tabtOrd"
+        android:id="@+id/txtTries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Ordet var: "
+        android:layout_marginTop="32dp"
+        android:text="antal forsøg: "
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabtBesked" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVundet" />
+
+    <Button
+        android:id="@+id/buttonWon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="spil igen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTries" />
 </androidx.constraintlayout.widget.ConstraintLayout>

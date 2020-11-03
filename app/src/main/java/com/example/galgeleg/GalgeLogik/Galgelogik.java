@@ -1,4 +1,4 @@
-package galgeleg;
+package com.example.galgeleg.GalgeLogik;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,8 +19,9 @@ public class Galgelogik {
   private boolean sidsteBogstavVarKorrekt;
   private boolean spilletErVundet;
   private boolean spilletErTabt;
-
+  Word word;
   public Galgelogik() {
+    muligeOrd.add("bil");
     muligeOrd.add("bil");
     muligeOrd.add("computer");
     muligeOrd.add("programmering");
@@ -74,6 +75,7 @@ public class Galgelogik {
     spilletErTabt = false;
     if (muligeOrd.isEmpty()) throw new IllegalStateException("Listen over mulige ord er tom!");
     ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
+    System.out.println("Nyt spil - det skjulte ord er: "+ordet);
     opdaterSynligtOrd();
   }
 
@@ -94,6 +96,7 @@ public class Galgelogik {
 
   public void gætBogstav(String bogstav) {
     if (bogstav.length() != 1) return;
+    System.out.println("Der gættes på bogstavet: " + bogstav);
     if (brugteBogstaver.contains(bogstav)) return;
     if (spilletErVundet || spilletErTabt) return;
 
@@ -101,9 +104,11 @@ public class Galgelogik {
 
     if (ordet.contains(bogstav)) {
       sidsteBogstavVarKorrekt = true;
+      System.out.println("Bogstavet var korrekt: " + bogstav);
     } else {
       // Vi gættede på et bogstav der ikke var i ordet.
       sidsteBogstavVarKorrekt = false;
+      System.out.println("Bogstavet var IKKE korrekt: " + bogstav);
       antalForkerteBogstaver = antalForkerteBogstaver + 1;
       if (antalForkerteBogstaver > 6) {
         spilletErTabt = true;
@@ -123,8 +128,18 @@ public class Galgelogik {
     System.out.println("---------- ");
   }
 
-
-  public static String hentUrl(String url) throws IOException {
+  /*public Word getOrd(String s){
+    if (s == null){
+      return null;
+    }
+    if (s.equalsIgnoreCase("dr")){
+      return new hentFraDr();
+    } else if (s.equalsIgnoreCase("regneark")){
+      return new hentFraArk();
+    }
+    return null;
+  }*/
+  private String hentUrl(String url) throws IOException {
     System.out.println("Henter data fra " + url);
     BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
     StringBuilder sb = new StringBuilder();
@@ -136,13 +151,12 @@ public class Galgelogik {
     return sb.toString();
   }
 
-
   /**
    * Hent ord fra DRs forside (https://dr.dk)
    */
   public void hentOrdFraDr() throws Exception {
     String data = hentUrl("https://dr.dk");
-    //System.out.println("data = " + data);
+    System.out.println("data = " + data);
 
     data = data.substring(data.indexOf("<body")). // fjern headere
             replaceAll("<.+?>", " ").toLowerCase(). // fjern tags
@@ -162,6 +176,8 @@ public class Galgelogik {
     muligeOrd.addAll(new HashSet<String>(Arrays.asList(data.split(" "))));
 
     System.out.println("muligeOrd = " + muligeOrd);
+   // word = new hentFraDr();
+    //word.getWord(muligeOrd);
     startNytSpil();
   }
 
@@ -169,7 +185,8 @@ public class Galgelogik {
   /**
    * Hent ord og sværhedsgrad fra et online regneark. Du kan redigere i regnearket, på adressen
    * https://docs.google.com/spreadsheets/d/1RnwU9KATJB94Rhr7nurvjxfg09wAHMZPYB3uySBPO6M/edit?usp=sharing
-   * @param sværhedsgrader en streng med de tilladte sværhedsgrader - f.eks "3" for at medtage kun svære ord, eller "12" for alle nemme og halvsvære ord
+   * @param/
+   * sværhedsgrader en streng med de tilladte sværhedsgrader - f.eks "3" for at medtage kun svære ord, eller "12" for alle nemme og halvsvære ord
    * @throws Exception
    */
 
@@ -195,6 +212,12 @@ public class Galgelogik {
     }
 
     System.out.println("muligeOrd = " + muligeOrd);
+    //Word word2 = getOrd("regneark");
+    //word2.getWord(muligeOrd);
     startNytSpil();
+  }
+
+  public static void main(String[] args) throws Exception {
+    new Galgelogik().hentOrdFraDr();
   }
 }

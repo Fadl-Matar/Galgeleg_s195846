@@ -9,29 +9,28 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button startKnap, hjælpKnap;
+    Button startButton, helpButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startKnap = findViewById(R.id.start);
-        hjælpKnap = findViewById(R.id.hjælp);
+        startButton = findViewById(R.id.start);
+        helpButton = findViewById(R.id.hjælp);
 
-        startKnap.setOnClickListener(this);
-        hjælpKnap.setOnClickListener(this);
+        startButton.setOnClickListener(this);
+        helpButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == startKnap){
+        if (v == startButton){
             Intent start = new Intent(this, GameStart.class);
             startActivity(start);
             finish();
         }
-        else if (v == hjælpKnap){
-            Intent hjælp = new Intent(this, Help.class);
-            startActivity(hjælp);
-            finish();
+        else if (v == helpButton){
+            Intent help = new Intent(this, Help.class);
+            startActivity(help);
         }
     }
 }
