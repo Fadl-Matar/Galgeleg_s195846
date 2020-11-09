@@ -4,5 +4,5 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public interface Word {
-    public void getWord(ArrayList<String> muligeOrd) throws IOException;
+    void getWord(ArrayList<String> muligeOrd) throws IOException;
 }

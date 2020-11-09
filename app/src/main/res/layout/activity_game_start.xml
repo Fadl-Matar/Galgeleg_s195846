@@ -10,11 +10,11 @@
         android:id="@+id/mitOrd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-light"
         android:text="Gæt ordet...."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,22 +22,22 @@
         android:id="@+id/inputBogstav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:fontFamily="sans-serif-light"
-        android:maxLength="1"
-        android:hint="indtast et bogstav"
         android:gravity="center"
+        android:hint="indtast et bogstav"
         android:inputType="textPersonName"
+        android:maxLength="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forkertBillede" />
+        app:layout_constraintTop_toBottomOf="@+id/submit" />
 
     <TextView
         android:id="@+id/forsøgTilbage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-light"
         android:text="6"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,12 +48,12 @@
         android:id="@+id/brugteBogstaver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-light"
         android:text="Brugte bogstaver: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submit" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBogstav" />
 
     <Button
         android:id="@+id/submit"
@@ -61,16 +61,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-light"
-        android:text="Indsend"
+        android:text="gæt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputBogstav" />
+        app:layout_constraintTop_toBottomOf="@+id/forkertBillede" />
 
     <ImageView
         android:id="@+id/forkertBillede"
         android:layout_width="135dp"
         android:layout_height="146dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"

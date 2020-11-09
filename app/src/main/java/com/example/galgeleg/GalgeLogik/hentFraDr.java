@@ -9,11 +9,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class hentFraDr implements Word{
-    //ArrayList<String> muligeOrd = new ArrayList<String>();
     @Override
     public void getWord(ArrayList<String> muligeOrd) throws IOException {
         String data = hentUrl("https://dr.dk");
-        //System.out.println("data = " + data);
+        System.out.println("data = " + data);
 
         data = data.substring(data.indexOf("<body")). // fjern headere
                 replaceAll("<.+?>", " ").toLowerCase(). // fjern tags

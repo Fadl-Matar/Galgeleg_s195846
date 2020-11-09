@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,25 +20,24 @@ import com.example.galgeleg.GalgeLogik.Galgelogik;
 
 public class GameStart extends AppCompatActivity implements View.OnClickListener {
 
-    Galgelogik gameLogic;
-    TextView guessedWord;
-    EditText edtInput;
-    TextView usedCharacters;
-    TextView tries;
-    ImageView picture;
-    Button guessButton;
-    Executor bgThread = Executors.newSingleThreadExecutor(); // en baggrundstråd
-    Handler uiThread = new Handler(Looper.getMainLooper());  // forgrundstråden
+    private Galgelogik gameLogic;
+    private TextView guessedWord;
+    private EditText edtInput;
+    private TextView usedCharacters;
+    private TextView tries;
+    private ImageView picture;
+    private Button guessButton;
+    private Executor bgThread = Executors.newSingleThreadExecutor(); // en baggrundstråd
+    private Handler uiThread = new Handler(Looper.getMainLooper());  // forgrundstråden
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_start2);
-        gameLogic = new Galgelogik();
+        setContentView(R.layout.activity_game_start);
+        gameLogic = Galgelogik.getInstance();
         guessedWord = findViewById(R.id.mitOrd);
-
 
         bgThread.execute(() -> {
             try {
@@ -63,6 +63,7 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+        edtInput.onEditorAction(EditorInfo.IME_ACTION_DONE);
         gameLogic.gætBogstav(edtInput.getText().toString());
         guessedWord.setText(gameLogic.getSynligtOrd());
         switch (gameLogic.getAntalForkerteBogstaver()){
