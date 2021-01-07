@@ -13,23 +13,27 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import com.example.galgeleg.GalgeLogik.Galgelogik;
+import com.example.galgeleg.GalgeLogik.scoreCalculator;
+import com.example.galgeleg.GalgeLogik.HighScore;
 
 public class GameStart extends AppCompatActivity implements View.OnClickListener {
 
     private Galgelogik gameLogic;
+    private scoreCalculator calculator;
     private TextView guessedWord;
     private EditText edtInput;
     private TextView usedCharacters;
     private TextView tries;
     private ImageView picture;
     private Button guessButton;
+    private int score;
     private Executor bgThread = Executors.newSingleThreadExecutor(); // en baggrundstråd
     private Handler uiThread = new Handler(Looper.getMainLooper());  // en forgrundstråden
-    private int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
         Intent intent = getIntent();
         String holder = intent.getStringExtra("ListViewValue");
         gameLogic = Galgelogik.getInstance();
+        calculator = new scoreCalculator();
         gameLogic.setOrdet(holder);
         guessedWord = findViewById(R.id.mitOrd);
         if (holder.equals("ord fra DR")){
@@ -94,22 +99,16 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
         usedCharacters.setText("Brugte bogstaver: " + gameLogic.getBrugteBogstaver());
         tries.setText(Integer.toString(6- gameLogic.getAntalForkerteBogstaver()));
         edtInput.getText().clear();
-        if (gameLogic.getOrdet().length() <= 3 && gameLogic.erSidsteBogstavKorrekt()){
-            score += 3;
-        }
-        else if (gameLogic.getOrdet().length() > 3 && gameLogic.erSidsteBogstavKorrekt()) {
-            score += 5;
-        }
+        score = calculator.calculate();
         if(gameLogic.erSpilletVundet()){
             Intent vundet = new Intent(this, WinPage.class);
             vundet.putExtra("amountTries", Integer.toString(gameLogic.getAntalForkerteBogstaver()));
             vundet.putExtra("score", Integer.toString(score));
+            vundet.putExtra("ordet", gameLogic.getOrdet());
             startActivity(vundet);
-            score = 0;
             finish();
         }
         if (gameLogic.erSpilletTabt()) {
-            score = 0;
             Intent tabt = new Intent(this, LostPage.class);
             tabt.putExtra("wordLost", gameLogic.getOrdet());
             startActivity(tabt);

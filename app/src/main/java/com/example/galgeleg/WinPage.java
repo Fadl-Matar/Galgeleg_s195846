@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 
 public class WinPage extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +25,8 @@ public class WinPage extends AppCompatActivity implements View.OnClickListener {
         player.start();
         amountOfTries = findViewById(R.id.txtTries);
         score = findViewById(R.id.score);
+        String ordet = intent.getStringExtra("ordet");
+        String highscore = intent.getStringExtra("score");
         score.setText("Du har fået " + intent.getStringExtra("score") + " point");
         amountOfTries.setText("Du har brugt " + intent.getStringExtra("amountTries") + " forsøg.");
         playWon = findViewById(R.id.buttonWon);
@@ -32,8 +35,10 @@ public class WinPage extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent screen = new Intent(this, CustomWord.class);
-        startActivity(screen);
-        finish();
+        if (v == playWon){
+            Intent screen = new Intent(this, CustomWord.class);
+            startActivity(screen);
+            finish();
+        }
     }
 }
