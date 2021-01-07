@@ -32,6 +32,7 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
     private ImageView picture;
     private Button guessButton;
     private int score;
+    private ArrayList<HighScore> scoreList = new ArrayList<>();
     private Executor bgThread = Executors.newSingleThreadExecutor(); // en baggrundstråd
     private Handler uiThread = new Handler(Looper.getMainLooper());  // en forgrundstråden
 
@@ -105,6 +106,8 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
             vundet.putExtra("amountTries", Integer.toString(gameLogic.getAntalForkerteBogstaver()));
             vundet.putExtra("score", Integer.toString(score));
             vundet.putExtra("ordet", gameLogic.getOrdet());
+            //ArrayListen ville ikke virke.
+            //scoreList.add(gameLogic.getOrdet(), Integer.toString(score));
             startActivity(vundet);
             finish();
         }
