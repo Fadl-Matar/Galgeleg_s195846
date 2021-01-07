@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Galgeleg</string>
+    <string name="app_name">s195846 Fadl Matar Galgeleg</string>
     <string name="galgeleg">Galgeleg</string>
     <string name="spil">Spil</string>
     <string name="hj_lp">Hjælp</string>
@@ -8,4 +8,5 @@
     <string name="spil_igen">Spil Igen</string>
     <string name="antal_fors_g">antal forsøg:</string>
     <string name="tillykke_du_har_vundet">Tillykke, du har vundet!!</string>
+    <string name="v_lg_venligst_et_ord">Vælg venligst et ord</string>
 </resources>

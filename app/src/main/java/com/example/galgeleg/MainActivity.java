@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == startButton){
-            Intent start = new Intent(this, GameStart.class);
+            Intent start = new Intent(this, CustomWord.class);
             startActivity(start);
             finish();
         }

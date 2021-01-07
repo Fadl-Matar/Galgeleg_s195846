@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Galgelogik {
   /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
-  private ArrayList<String> muligeOrd = new ArrayList<String>();
+  public ArrayList<String> muligeOrd = new ArrayList<String>();
   private String ordet;
   private ArrayList<String> brugteBogstaver = new ArrayList<String>();
   private String synligtOrd;
@@ -30,7 +30,6 @@ public class Galgelogik {
     return instance;
   }
 
-
   public ArrayList<String> getBrugteBogstaver() {
     return brugteBogstaver;
   }
@@ -41,6 +40,12 @@ public class Galgelogik {
 
   public String getOrdet() {
     return ordet;
+  }
+
+
+  public void setOrdet(String ordet) {
+    this.ordet = ordet;
+    opdaterSynligtOrd();
   }
 
   public int getAntalForkerteBogstaver() {
@@ -71,7 +76,7 @@ public class Galgelogik {
     spilletErTabt = false;
     if (muligeOrd.isEmpty()) throw new IllegalStateException("Listen over mulige ord er tom!");
     ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
-    System.out.println("Nyt spil - det skjulte ord er: "+ordet);
+    System.out.println("Nyt spil - det skjulte ord er: " + ordet);
     opdaterSynligtOrd();
   }
 
@@ -147,6 +152,7 @@ public class Galgelogik {
   }
 
 
+
   /**
    * Hent ord og sværhedsgrad fra et online regneark. Du kan redigere i regnearket, på adressen
    * https://docs.google.com/spreadsheets/d/1RnwU9KATJB94Rhr7nurvjxfg09wAHMZPYB3uySBPO6M/edit?usp=sharing
@@ -161,7 +167,4 @@ public class Galgelogik {
     startNytSpil();
   }
 
-  public static void main(String[] args) throws Exception {
-    new Galgelogik().hentOrdFraDr();
-  }
 }
